@@ -8,7 +8,24 @@ layout: default
   </header>
 
   <div class="investment-content">
-    {% include investment1.svg.html %}
+
+    <div class="svg-container">
+      <h2>Nieruchomości</h2>
+      <div class="row small-row-text">
+        <span class="property-status available">Dostępne</span>
+        <span class="property-status reserved">Zarezerwowane</span>
+        <span class="property-status sold">Sprzedane</span>
+      </div>
+
+      {% if page.investment_number == 1 %}
+        {% include investment1.svg.html %}
+      {% else if page.investment_number == 2 %}
+        {% include investment2.svg.html %}
+      {% else if page.investment_number == 3 %}
+        {% include investment3.svg.html %}
+      {% endif %}
+
+    </div>
 
     <hr class="divider">
 
@@ -26,20 +43,20 @@ layout: default
       </thead>
       <tbody>
       {% for property in site.properties %}
-      {% if property.investment == page.investment %}
+      {% if property.investment_number == page.investment_number %}
 
-      {% if property.availability == false %}
-        {% assign propertyClass = "sold" %}
-        {% assign propertyStatus = "Sprzedane" %}
-      {% elsif property.reservation == true %}
-        {% assign propertyClass = "reserved" %}
-        {% assign propertyStatus = "Zarezerwowane" %}
-      {% else %}
-        {% assign propertyClass = "available" %}
-        {% assign propertyStatus = "Dostępne" %}
-      {% endif %}
+        {% if property.availability == false %}
+          {% assign propertyClass = "sold" %}
+          {% assign propertyStatus = "Sprzedane" %}
+        {% elsif property.reservation == true %}
+          {% assign propertyClass = "reserved" %}
+          {% assign propertyStatus = "Zarezerwowane" %}
+        {% else %}
+          {% assign propertyClass = "available" %}
+          {% assign propertyStatus = "Dostępne" %}
+        {% endif %}
 
-      <tr data-href="{{ site.baseurl }}{{ property.url }}">
+        <tr data-href="{{ site.baseurl }}{{ property.url }}">
         <td data-label="#{{ property.property_number }}">{{ property.property_number }}</td>
         <td data-label="Typ">{{ property.type }}</td>
         <td data-label="Metraż">{{ property.square_meters }} ㎡</td>
@@ -49,7 +66,7 @@ layout: default
           {% endif %}</td>
         <td data-label="Cena">{{ property.price }} zł</td>
         <td data-label="Cena / ㎡">{{ property.price | divided_by: property.plot_square_meters }} zł / ㎡</td>
-        <td><a class="arrow" href="{{ site.baseurl }}{{ property.url }}">Zobacz</a></td>
+        <td class="arrow"><a class="arrow" href="{{ site.baseurl }}{{ property.url }}">Zobacz</a></td>
       </tr>
       {% endif %}
       {% endfor %}

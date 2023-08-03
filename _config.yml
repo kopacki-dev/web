@@ -37,6 +37,8 @@ collections:
   output: true
  properties:
   output: true
+ news:
+  output: true
 
 exclude:
  - .sass-cache/

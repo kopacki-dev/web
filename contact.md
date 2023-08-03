@@ -4,4 +4,14 @@ title: Kontakt
 permalink: /contact/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+TODO:
+- dodać mapę
+- dodać formularz kontaktowy
+- dodać dane kontaktowe
+- dodać godziny otwarcia
+- dodać adres
+- dodać link do google maps
+- dodać link do facebooka
+- dodać link do instagrama
+- dodać link do linkedin
+- dodać link do twittera

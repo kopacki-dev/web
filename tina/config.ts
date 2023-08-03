@@ -145,6 +145,41 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "news",
+        label: "Aktualności",
+        path: "_news",
+        format: 'md',
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Nazwa aktualności",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Krótki opis",
+            required: true,
+            indexed: true,
+          },
+          {
+            type: "string",
+            name: "images",
+            label: "Zdjęcia",
+            required: false,
+            list: true,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Zawartość strony",
+            isBody: true,
+          },
+        ],
+      },
     ],
   },
 });

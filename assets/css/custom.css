@@ -1,6 +1,20 @@
 .wrapper {
     max-width: 80rem;
 }
+.row {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+
+.row > span {
+    margin: 5px;
+}
+
+.small-row-text {
+    font-size: 0.7rem;
+}
+
 .call-map {
     position: relative;
     width: 100%;
@@ -52,6 +66,22 @@ path.sold:hover {
     fill: red;
     stroke: red;
 }
+
+@media screen and (max-width: 600px) {
+    path {
+        fill-opacity:0.5;
+        stroke-width: 5px;
+    }
+    path.reserved {
+        fill: orange;
+        stroke: orange;
+    }
+    path.sold {
+        fill: red;
+        stroke: red;
+    }
+}
+
 
 span.sold {
     background-color: red;

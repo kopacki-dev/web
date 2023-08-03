@@ -85,6 +85,8 @@ export type Query = {
   investmentConnection: InvestmentConnection;
   properties: Properties;
   propertiesConnection: PropertiesConnection;
+  news: News;
+  newsConnection: NewsConnection;
 };
 
 
@@ -138,9 +140,25 @@ export type QueryPropertiesConnectionArgs = {
   filter?: InputMaybe<PropertiesFilter>;
 };
 
+
+export type QueryNewsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryNewsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<NewsFilter>;
+};
+
 export type DocumentFilter = {
   investment?: InputMaybe<InvestmentFilter>;
   properties?: InputMaybe<PropertiesFilter>;
+  news?: InputMaybe<NewsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -180,7 +198,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Investment | Properties | Folder;
+export type DocumentNode = Investment | Properties | News | Folder;
 
 export type Investment = Node & Document & {
   __typename?: 'Investment';
@@ -290,6 +308,37 @@ export type PropertiesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PropertiesConnectionEdges>>>;
 };
 
+export type News = Node & Document & {
+  __typename?: 'News';
+  title: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  images?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type NewsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  images?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+};
+
+export type NewsConnectionEdges = {
+  __typename?: 'NewsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<News>;
+};
+
+export type NewsConnection = Connection & {
+  __typename?: 'NewsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<NewsConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -300,6 +349,8 @@ export type Mutation = {
   createInvestment: Investment;
   updateProperties: Properties;
   createProperties: Properties;
+  updateNews: News;
+  createNews: News;
 };
 
 
@@ -353,15 +404,29 @@ export type MutationCreatePropertiesArgs = {
   params: PropertiesMutation;
 };
 
+
+export type MutationUpdateNewsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: NewsMutation;
+};
+
+
+export type MutationCreateNewsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: NewsMutation;
+};
+
 export type DocumentUpdateMutation = {
   investment?: InputMaybe<InvestmentMutation>;
   properties?: InputMaybe<PropertiesMutation>;
+  news?: InputMaybe<NewsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   investment?: InputMaybe<InvestmentMutation>;
   properties?: InputMaybe<PropertiesMutation>;
+  news?: InputMaybe<NewsMutation>;
 };
 
 export type InvestmentMutation = {
@@ -387,9 +452,18 @@ export type PropertiesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type NewsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  images?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
 export type InvestmentPartsFragment = { __typename?: 'Investment', title: string, investment_number: number, properties_count: number, description: string, availability: boolean, images?: Array<string | null> | null, body?: any | null };
 
 export type PropertiesPartsFragment = { __typename?: 'Properties', title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, images?: Array<string | null> | null, body?: any | null };
+
+export type NewsPartsFragment = { __typename?: 'News', title: string, description: string, images?: Array<string | null> | null, body?: any | null };
 
 export type InvestmentQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -429,6 +503,25 @@ export type PropertiesConnectionQueryVariables = Exact<{
 
 export type PropertiesConnectionQuery = { __typename?: 'Query', propertiesConnection: { __typename?: 'PropertiesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PropertiesConnectionEdges', cursor: string, node?: { __typename?: 'Properties', id: string, title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type NewsQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type NewsQuery = { __typename?: 'Query', news: { __typename?: 'News', id: string, title: string, description: string, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type NewsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<NewsFilter>;
+}>;
+
+
+export type NewsConnectionQuery = { __typename?: 'Query', newsConnection: { __typename?: 'NewsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NewsConnectionEdges', cursor: string, node?: { __typename?: 'News', id: string, title: string, description: string, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
 export const InvestmentPartsFragmentDoc = gql`
     fragment InvestmentParts on Investment {
   title
@@ -450,6 +543,14 @@ export const PropertiesPartsFragmentDoc = gql`
   availability
   reservation
   price
+  images
+  body
+}
+    `;
+export const NewsPartsFragmentDoc = gql`
+    fragment NewsParts on News {
+  title
+  description
   images
   body
 }
@@ -564,6 +665,61 @@ export const PropertiesConnectionDocument = gql`
   }
 }
     ${PropertiesPartsFragmentDoc}`;
+export const NewsDocument = gql`
+    query news($relativePath: String!) {
+  news(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...NewsParts
+  }
+}
+    ${NewsPartsFragmentDoc}`;
+export const NewsConnectionDocument = gql`
+    query newsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: NewsFilter) {
+  newsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...NewsParts
+      }
+    }
+  }
+}
+    ${NewsPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -578,6 +734,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     propertiesConnection(variables?: PropertiesConnectionQueryVariables, options?: C): Promise<{data: PropertiesConnectionQuery, variables: PropertiesConnectionQueryVariables, query: string}> {
         return requester<{data: PropertiesConnectionQuery, variables: PropertiesConnectionQueryVariables, query: string}, PropertiesConnectionQueryVariables>(PropertiesConnectionDocument, variables, options);
+      },
+    news(variables: NewsQueryVariables, options?: C): Promise<{data: NewsQuery, variables: NewsQueryVariables, query: string}> {
+        return requester<{data: NewsQuery, variables: NewsQueryVariables, query: string}, NewsQueryVariables>(NewsDocument, variables, options);
+      },
+    newsConnection(variables?: NewsConnectionQueryVariables, options?: C): Promise<{data: NewsConnectionQuery, variables: NewsConnectionQueryVariables, query: string}> {
+        return requester<{data: NewsConnectionQuery, variables: NewsConnectionQueryVariables, query: string}, NewsConnectionQueryVariables>(NewsConnectionDocument, variables, options);
       }
     };
   }

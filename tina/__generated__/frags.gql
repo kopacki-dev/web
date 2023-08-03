@@ -20,3 +20,10 @@ fragment PropertiesParts on Properties {
   images
   body
 }
+
+fragment NewsParts on News {
+  title
+  description
+  images
+  body
+}

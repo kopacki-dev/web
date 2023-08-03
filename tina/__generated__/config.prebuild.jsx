@@ -3,13 +3,14 @@ import { defineConfig } from "tinacms";
 var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "master";
 var config_default = defineConfig({
   branch,
-  clientId: null,
+  clientId: process.env.CLIENT_ID,
   // Get this from tina.io
-  token: null,
+  token: process.env.TINA_TOKEN,
   // Get this from tina.io
   build: {
     outputFolder: "admin",
-    publicFolder: "."
+    publicFolder: ".",
+    basePath: "building-investments-website"
   },
   media: {
     tina: {
@@ -127,6 +128,41 @@ var config_default = defineConfig({
             name: "price",
             label: "Cena w z\u0142",
             required: true
+          },
+          {
+            type: "string",
+            name: "images",
+            label: "Zdj\u0119cia",
+            required: false,
+            list: true
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Zawarto\u015B\u0107 strony",
+            isBody: true
+          }
+        ]
+      },
+      {
+        name: "news",
+        label: "Aktualno\u015Bci",
+        path: "_news",
+        format: "md",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Nazwa aktualno\u015Bci",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Kr\xF3tki opis",
+            required: true,
+            indexed: true
           },
           {
             type: "string",

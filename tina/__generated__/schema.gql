@@ -57,11 +57,14 @@ type Query {
   investmentConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: InvestmentFilter): InvestmentConnection!
   properties(relativePath: String): Properties!
   propertiesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PropertiesFilter): PropertiesConnection!
+  news(relativePath: String): News!
+  newsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: NewsFilter): NewsConnection!
 }
 
 input DocumentFilter {
   investment: InvestmentFilter
   properties: PropertiesFilter
+  news: NewsFilter
 }
 
 type DocumentConnectionEdges {
@@ -87,7 +90,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Investment | Properties | Folder
+union DocumentNode = Investment | Properties | News | Folder
 
 type Investment implements Node & Document {
   title: String!
@@ -191,6 +194,34 @@ type PropertiesConnection implements Connection {
   edges: [PropertiesConnectionEdges]
 }
 
+type News implements Node & Document {
+  title: String!
+  description: String!
+  images: [String]
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input NewsFilter {
+  title: StringFilter
+  description: StringFilter
+  images: StringFilter
+  body: RichTextFilter
+}
+
+type NewsConnectionEdges {
+  cursor: String!
+  node: News
+}
+
+type NewsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [NewsConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -200,17 +231,21 @@ type Mutation {
   createInvestment(relativePath: String!, params: InvestmentMutation!): Investment!
   updateProperties(relativePath: String!, params: PropertiesMutation!): Properties!
   createProperties(relativePath: String!, params: PropertiesMutation!): Properties!
+  updateNews(relativePath: String!, params: NewsMutation!): News!
+  createNews(relativePath: String!, params: NewsMutation!): News!
 }
 
 input DocumentUpdateMutation {
   investment: InvestmentMutation
   properties: PropertiesMutation
+  news: NewsMutation
   relativePath: String
 }
 
 input DocumentMutation {
   investment: InvestmentMutation
   properties: PropertiesMutation
+  news: NewsMutation
 }
 
 input InvestmentMutation {
@@ -232,6 +267,13 @@ input PropertiesMutation {
   availability: Boolean
   reservation: Boolean
   price: Float
+  images: [String]
+  body: JSON
+}
+
+input NewsMutation {
+  title: String
+  description: String
   images: [String]
   body: JSON
 }

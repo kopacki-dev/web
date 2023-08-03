@@ -19,3 +19,11 @@
     border: 0;
     border-top: 2px solid black;
 }
+
+.svg-container {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(128, 128, 128, 0.05);
+    vertical-align: middle;
+    overflow: hidden;
+}
