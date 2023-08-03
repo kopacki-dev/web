@@ -1,0 +1,22 @@
+fragment InvestmentParts on Investment {
+  title
+  investment_number
+  properties_count
+  description
+  availability
+  images
+  body
+}
+
+fragment PropertiesParts on Properties {
+  title
+  investment_number
+  type
+  square_meters
+  plot_square_meters
+  availability
+  reservation
+  price
+  images
+  body
+}

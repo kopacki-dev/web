@@ -1,0 +1,74 @@
+---
+layout: default
+---
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="investment-content">
+    {% include investment1.svg.html %}
+
+    <svg viewBox="0 0 1920 593" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <image width="1920" height="593" preserveAspectRatio="none" xlink:href="{{ page.plan_image }}"/>
+      <path class="reserved" d="m49.84 151.9-0.9677 283 115.2 0.4838 1.935-118.1 79.83-1.935v-164z" />
+      <path class="sold" d="m247.2 152.4 203.7-0.4838 1.935 195.5-123.9 1.452-2.903-32.9-79.83-0.4838z"/>
+    </svg>
+
+
+
+    <hr class="divider">
+
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Typ</th>
+        <th>Metraż</th>
+        <th>Pow. działki</th>
+        <th>Dostępność</th>
+        <th>Cena</th>
+        <th>Cena / ㎡</th>
+      </tr>
+
+      {% for property in site.properties %}
+      {% if property.investment == page.investment %}
+      <tr>
+        <td><a href="{{ site.baseurl }}{{ property.url }}">Zobacz</a></td>
+        <td>{{ property.type }}</td>
+        <td>{{ property.square_meters }} ㎡</td>
+        <td>{{ property.plot_square_meters }} ㎡</td>
+        <td>{{ property.availability }}</td>
+        <td>{{ property.price }} zł</td>
+        <td>{{ property.price | divided_by: property.plot_square_meters }} zł / ㎡</td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+
+    </table>
+
+    <hr style="margin: 30px; border: 0; border-top: 2px solid black;">
+
+    <h2>Galeria inwestycji</h2>
+    <div class="image-gallery">
+      {% for image in page.images %}
+      <div class="image-container">
+        <img src="{{ image }}" alt="Image of {{ page.title }}">
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <h2>Lokalizacja</h2>
+    <div class="call-map">
+      <iframe src="{{ page.location }}" class="responsive-iframe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+
+    <h2>Opis inwestycji</h2>
+    <p>
+      {{ content }}
+    </p>
+  </div>
+
+</article>

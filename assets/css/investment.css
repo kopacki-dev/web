@@ -1,0 +1,21 @@
+.investment-content {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.divider {
+    margin: 30px;
+    border: 0;
+    border-top: 2px solid black;
+}

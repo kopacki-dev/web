@@ -1,0 +1,56 @@
+---
+layout: default
+---
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+  </header>
+
+  {% if page.availability == false %}
+    {% assign propertyClass = "sold" %}
+    {% assign propertyStatus = "Sprzedane" %}
+  {% elsif page.reservation == true %}
+    {% assign propertyClass = "reserved" %}
+    {% assign propertyStatus = "Zarezerwowane" %}
+  {% else %}
+    {% assign propertyClass = "available" %}
+    {% assign propertyStatus = "Dostępne" %}
+  {% endif %}
+
+  <h1>
+    {{ page.title }}
+    {% if propertyStatus != "" %}
+    <span class="property-status {{ propertyClass }}">{{ propertyStatus }}</span>
+    {% endif %}
+  </h1>
+  <ul>
+    <li>Typ: {{ page.type }}</li>
+    <li>Metraż: {{ page.square_meters }} ㎡</li>
+    <li>Pow. działki: {{ page.plot_square_meters }} ㎡</li>
+    <li>Cena: {{ page.price }} zł</li>
+    <li>Cena / ㎡: {{ page.price | divided_by: page.plot_square_meters }} zł / ㎡</li>
+  </ul>
+
+  <div>
+    <h2>Karta mieszkania</h2>
+    <p>
+      <img src="{{ page.main_image }}" alt="Karta mieszkania">
+    </p>
+  </div>
+
+  <h2>Galeria inwestycji</h2>
+  <div class="image-gallery">
+    {% for image in page.images %}
+    <div class="image-container">
+      <img src="{{ image }}" alt="Image of {{ page.title }}">
+    </div>
+    {% endfor %}
+  </div>
+
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+</article>
