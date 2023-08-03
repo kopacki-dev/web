@@ -43,7 +43,7 @@ layout: default
   <div class="image-gallery">
     {% for image in page.images %}
     <div class="image-container">
-      <img src="{{ image }}" alt="Image of {{ page.title }}">
+      <img src="{{ site.baseurl }}{{ image }}" alt="Image of {{ page.title }}">
     </div>
     {% endfor %}
   </div>
