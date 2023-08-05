@@ -1,10 +1,9 @@
 fragment InvestmentParts on Investment {
   title
-  investment_number
+  number
   properties_count
   description
   availability
-  images
   body
 }
 
@@ -17,13 +16,11 @@ fragment PropertiesParts on Properties {
   availability
   reservation
   price
-  images
   body
 }
 
 fragment NewsParts on News {
   title
   description
-  images
   body
 }

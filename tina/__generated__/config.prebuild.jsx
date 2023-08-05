@@ -35,7 +35,7 @@ var config_default = defineConfig({
           },
           {
             type: "number",
-            name: "investment_number",
+            name: "number",
             label: "Numer inwestycji",
             required: true,
             indexed: true
@@ -58,13 +58,6 @@ var config_default = defineConfig({
             name: "availability",
             label: "Jeszcze dost\u0119pne?",
             required: true
-          },
-          {
-            type: "string",
-            name: "images",
-            label: "Zdj\u0119cia",
-            required: false,
-            list: true
           },
           {
             type: "rich-text",
@@ -130,13 +123,6 @@ var config_default = defineConfig({
             required: true
           },
           {
-            type: "string",
-            name: "images",
-            label: "Zdj\u0119cia",
-            required: false,
-            list: true
-          },
-          {
             type: "rich-text",
             name: "body",
             label: "Zawarto\u015B\u0107 strony",
@@ -163,13 +149,6 @@ var config_default = defineConfig({
             label: "Kr\xF3tki opis",
             required: true,
             indexed: true
-          },
-          {
-            type: "string",
-            name: "images",
-            label: "Zdj\u0119cia",
-            required: false,
-            list: true
           },
           {
             type: "rich-text",

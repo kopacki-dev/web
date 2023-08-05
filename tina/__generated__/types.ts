@@ -203,11 +203,10 @@ export type DocumentNode = Investment | Properties | News | Folder;
 export type Investment = Node & Document & {
   __typename?: 'Investment';
   title: Scalars['String']['output'];
-  investment_number: Scalars['Float']['output'];
+  number: Scalars['Float']['output'];
   properties_count: Scalars['Float']['output'];
   description: Scalars['String']['output'];
   availability: Scalars['Boolean']['output'];
-  images?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -244,11 +243,10 @@ export type RichTextFilter = {
 
 export type InvestmentFilter = {
   title?: InputMaybe<StringFilter>;
-  investment_number?: InputMaybe<NumberFilter>;
+  number?: InputMaybe<NumberFilter>;
   properties_count?: InputMaybe<NumberFilter>;
   description?: InputMaybe<StringFilter>;
   availability?: InputMaybe<BooleanFilter>;
-  images?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -275,7 +273,6 @@ export type Properties = Node & Document & {
   availability: Scalars['Boolean']['output'];
   reservation: Scalars['Boolean']['output'];
   price: Scalars['Float']['output'];
-  images?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -291,7 +288,6 @@ export type PropertiesFilter = {
   availability?: InputMaybe<BooleanFilter>;
   reservation?: InputMaybe<BooleanFilter>;
   price?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -312,7 +308,6 @@ export type News = Node & Document & {
   __typename?: 'News';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
-  images?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -322,7 +317,6 @@ export type News = Node & Document & {
 export type NewsFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  images?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -431,11 +425,10 @@ export type DocumentMutation = {
 
 export type InvestmentMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  investment_number?: InputMaybe<Scalars['Float']['input']>;
+  number?: InputMaybe<Scalars['Float']['input']>;
   properties_count?: InputMaybe<Scalars['Float']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   availability?: InputMaybe<Scalars['Boolean']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -448,29 +441,27 @@ export type PropertiesMutation = {
   availability?: InputMaybe<Scalars['Boolean']['input']>;
   reservation?: InputMaybe<Scalars['Boolean']['input']>;
   price?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type NewsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type InvestmentPartsFragment = { __typename?: 'Investment', title: string, investment_number: number, properties_count: number, description: string, availability: boolean, images?: Array<string | null> | null, body?: any | null };
+export type InvestmentPartsFragment = { __typename?: 'Investment', title: string, number: number, properties_count: number, description: string, availability: boolean, body?: any | null };
 
-export type PropertiesPartsFragment = { __typename?: 'Properties', title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, images?: Array<string | null> | null, body?: any | null };
+export type PropertiesPartsFragment = { __typename?: 'Properties', title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, body?: any | null };
 
-export type NewsPartsFragment = { __typename?: 'News', title: string, description: string, images?: Array<string | null> | null, body?: any | null };
+export type NewsPartsFragment = { __typename?: 'News', title: string, description: string, body?: any | null };
 
 export type InvestmentQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type InvestmentQuery = { __typename?: 'Query', investment: { __typename?: 'Investment', id: string, title: string, investment_number: number, properties_count: number, description: string, availability: boolean, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type InvestmentQuery = { __typename?: 'Query', investment: { __typename?: 'Investment', id: string, title: string, number: number, properties_count: number, description: string, availability: boolean, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type InvestmentConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -482,14 +473,14 @@ export type InvestmentConnectionQueryVariables = Exact<{
 }>;
 
 
-export type InvestmentConnectionQuery = { __typename?: 'Query', investmentConnection: { __typename?: 'InvestmentConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'InvestmentConnectionEdges', cursor: string, node?: { __typename?: 'Investment', id: string, title: string, investment_number: number, properties_count: number, description: string, availability: boolean, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type InvestmentConnectionQuery = { __typename?: 'Query', investmentConnection: { __typename?: 'InvestmentConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'InvestmentConnectionEdges', cursor: string, node?: { __typename?: 'Investment', id: string, title: string, number: number, properties_count: number, description: string, availability: boolean, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PropertiesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type PropertiesQuery = { __typename?: 'Query', properties: { __typename?: 'Properties', id: string, title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PropertiesQuery = { __typename?: 'Query', properties: { __typename?: 'Properties', id: string, title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PropertiesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -501,14 +492,14 @@ export type PropertiesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PropertiesConnectionQuery = { __typename?: 'Query', propertiesConnection: { __typename?: 'PropertiesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PropertiesConnectionEdges', cursor: string, node?: { __typename?: 'Properties', id: string, title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PropertiesConnectionQuery = { __typename?: 'Query', propertiesConnection: { __typename?: 'PropertiesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PropertiesConnectionEdges', cursor: string, node?: { __typename?: 'Properties', id: string, title: string, investment_number: number, type: string, square_meters: number, plot_square_meters: number, availability: boolean, reservation: boolean, price: number, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type NewsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type NewsQuery = { __typename?: 'Query', news: { __typename?: 'News', id: string, title: string, description: string, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type NewsQuery = { __typename?: 'Query', news: { __typename?: 'News', id: string, title: string, description: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type NewsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -520,16 +511,15 @@ export type NewsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type NewsConnectionQuery = { __typename?: 'Query', newsConnection: { __typename?: 'NewsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NewsConnectionEdges', cursor: string, node?: { __typename?: 'News', id: string, title: string, description: string, images?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type NewsConnectionQuery = { __typename?: 'Query', newsConnection: { __typename?: 'NewsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NewsConnectionEdges', cursor: string, node?: { __typename?: 'News', id: string, title: string, description: string, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const InvestmentPartsFragmentDoc = gql`
     fragment InvestmentParts on Investment {
   title
-  investment_number
+  number
   properties_count
   description
   availability
-  images
   body
 }
     `;
@@ -543,7 +533,6 @@ export const PropertiesPartsFragmentDoc = gql`
   availability
   reservation
   price
-  images
   body
 }
     `;
@@ -551,7 +540,6 @@ export const NewsPartsFragmentDoc = gql`
     fragment NewsParts on News {
   title
   description
-  images
   body
 }
     `;

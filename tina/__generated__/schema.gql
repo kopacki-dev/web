@@ -94,11 +94,10 @@ union DocumentNode = Investment | Properties | News | Folder
 
 type Investment implements Node & Document {
   title: String!
-  investment_number: Float!
+  number: Float!
   properties_count: Float!
   description: String!
   availability: Boolean!
-  images: [String]
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -135,11 +134,10 @@ input RichTextFilter {
 
 input InvestmentFilter {
   title: StringFilter
-  investment_number: NumberFilter
+  number: NumberFilter
   properties_count: NumberFilter
   description: StringFilter
   availability: BooleanFilter
-  images: StringFilter
   body: RichTextFilter
 }
 
@@ -163,7 +161,6 @@ type Properties implements Node & Document {
   availability: Boolean!
   reservation: Boolean!
   price: Float!
-  images: [String]
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -179,7 +176,6 @@ input PropertiesFilter {
   availability: BooleanFilter
   reservation: BooleanFilter
   price: NumberFilter
-  images: StringFilter
   body: RichTextFilter
 }
 
@@ -197,7 +193,6 @@ type PropertiesConnection implements Connection {
 type News implements Node & Document {
   title: String!
   description: String!
-  images: [String]
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -207,7 +202,6 @@ type News implements Node & Document {
 input NewsFilter {
   title: StringFilter
   description: StringFilter
-  images: StringFilter
   body: RichTextFilter
 }
 
@@ -250,11 +244,10 @@ input DocumentMutation {
 
 input InvestmentMutation {
   title: String
-  investment_number: Float
+  number: Float
   properties_count: Float
   description: String
   availability: Boolean
-  images: [String]
   body: JSON
 }
 
@@ -267,14 +260,12 @@ input PropertiesMutation {
   availability: Boolean
   reservation: Boolean
   price: Float
-  images: [String]
   body: JSON
 }
 
 input NewsMutation {
   title: String
   description: String
-  images: [String]
   body: JSON
 }
 
