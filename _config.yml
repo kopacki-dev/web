@@ -20,6 +20,7 @@
 
 title: TODO Tytuł Strony
 email: TODO@example.com
+phone: 555 555 555
 description: >- # this means to ignore newlines until "baseurl:"
   TODO: Dodać opis strony pod SSO.
 baseurl: "/building-investments-website" # the subpath of your site, e.g. /blog

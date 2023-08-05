@@ -31,6 +31,9 @@ layout: default
     <li>Cena: {{ page.price | money }}</li>
     <li>Cena / m<sup>2</sup>: {{ page.price | divided_by: page.plot_square_meters | money }}/m<sup>2</sup></li>
   </ul>
+  {% if propertyClass == "available" %}
+  <a href="tel: {{ site.phone }}"><span class="property-status reserved">Zarezerwuj +48 {{ site.phone }}</span></a>
+  {% endif %}
 
   <div>
     <h2>Karta mieszkania</h2>
@@ -43,7 +46,6 @@ layout: default
 
   <h2>Galeria nieruchomości</h2>
   {% include gallery.html %}
-
 
   <div class="post-content">
     {{ content }}
