@@ -17,12 +17,14 @@ layout: default
         <span class="property-status sold">Sprzedane</span>
       </div>
 
-      {% if page.investment_number == 1 %}
+      {% if page.number == 1 %}
         {% include investment1.svg.html %}
-      {% else if page.investment_number == 2 %}
+      {% else if page.number == 2 %}
         {% include investment2.svg.html %}
-      {% else if page.investment_number == 3 %}
+      {% else if page.number == 3 %}
         {% include investment3.svg.html %}
+      {% else if page.number == 4 %}
+        {% include investment4.svg.html %}
       {% endif %}
 
     </div>
@@ -43,7 +45,7 @@ layout: default
       </thead>
       <tbody>
       {% for property in site.properties %}
-      {% if property.investment_number == page.investment_number %}
+      {% if property.investment_number == page.number %}
 
         {% if property.availability == false %}
           {% assign propertyClass = "sold" %}
@@ -57,15 +59,15 @@ layout: default
         {% endif %}
 
         <tr data-href="{{ site.baseurl }}{{ property.url }}">
-        <td data-label="#{{ property.property_number }}">{{ property.property_number }}</td>
+        <td data-label="#{{ property.number }}">{{ property.number }}</td>
         <td data-label="Typ">{{ property.type }}</td>
-        <td data-label="Metraż">{{ property.square_meters }} ㎡</td>
-        <td data-label="Pow. działki">{{ property.plot_square_meters }} ㎡</td>
+        <td data-label="Metraż">{{ property.square_meters }}m<sup>2</sup></td>
+        <td data-label="Pow. działki">{{ property.plot_square_meters }}m<sup>2</sup></td>
         <td data-label="Dostępność">{% if propertyStatus != "" %}
           <span class="property-status {{ propertyClass }}">{{ propertyStatus }}</span>
           {% endif %}</td>
-        <td data-label="Cena">{{ property.price }} zł</td>
-        <td data-label="Cena / ㎡">{{ property.price | divided_by: property.plot_square_meters }} zł / ㎡</td>
+        <td data-label="Cena">{{ property.price | money }}</td>
+        <td data-label="Cena / ㎡">{{ property.price | divided_by: property.plot_square_meters | money }}/m<sup>2</sup></td>
         <td class="arrow"><a class="arrow" href="{{ site.baseurl }}{{ property.url }}">Zobacz</a></td>
       </tr>
       {% endif %}
@@ -76,14 +78,7 @@ layout: default
     <hr style="margin: 30px; border: 0; border-top: 2px solid black;">
 
     <h2>Galeria inwestycji</h2>
-    <div class="image-gallery">
-      {% for image in page.images %}
-      <div class="image-container">
-        <img src="{{ site.baseurl }}{{ image }}" alt="Image of {{ page.title }}">
-      </div>
-      {% endfor %}
-    </div>
-
+    {% include gallery.html %}
 
     <h2>Lokalizacja</h2>
     <div class="call-map">

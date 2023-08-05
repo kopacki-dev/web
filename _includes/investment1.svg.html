@@ -3,7 +3,7 @@
     <image width="1920" height="350" preserveAspectRatio="none" xlink:href="{{ site.baseurl }}{{ page.plan_image }}"/>
 
 {% for property in site.properties %}
-{% if property.investment_number == page.investment_number %}
+{% if property.investment_number == page.number %}
     {% if property.availability == false %}
         {% assign propertyClass = "sold" %}
         {% assign propertyStatus = "Sprzedane" %}
@@ -15,11 +15,11 @@
         {% assign propertyStatus = property.title %}
     {% endif %}
 
-    {% if property.property_number == 1 %}
+    {% if property.number == 6 %}
     <a xlink:title="{{ propertyStatus }}" xlink:href="{{ site.baseurl }}{{ property.url }}">
         <path class="{{ propertyClass }}" d="m49.84 18-0.9677 283 115.2 0.4838 1.935-118.1 79.83-1.935v-164z" />
     </a>
-    {% elsif property.property_number == 2 %}
+    {% elsif property.number == 5 %}
     <a xlink:title="{{ propertyStatus }}" xlink:href="{{ site.baseurl }}{{ property.url }}">
         <path class="{{ propertyClass }}" d="m247.2 18 203.7-0.4838 1.935 195.5-123.9 1.452-2.903-32.9-79.83-0.4838z"/>
     </a>

@@ -36,7 +36,7 @@ export default defineConfig({
           },
           {
             type: "number",
-            name: "investment_number",
+            name: "number",
             label: "Numer inwestycji",
             required: true,
             indexed: true,
@@ -59,13 +59,6 @@ export default defineConfig({
             name: "availability",
             label: "Jeszcze dostępne?",
             required: true,
-          },
-          {
-            type: "string",
-            name: "images",
-            label: "Zdjęcia",
-            required: false,
-            list: true,
           },
           {
             type: "rich-text",
@@ -131,13 +124,6 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "string",
-            name: "images",
-            label: "Zdjęcia",
-            required: false,
-            list: true,
-          },
-          {
             type: "rich-text",
             name: "body",
             label: "Zawartość strony",
@@ -164,13 +150,6 @@ export default defineConfig({
             label: "Krótki opis",
             required: true,
             indexed: true,
-          },
-          {
-            type: "string",
-            name: "images",
-            label: "Zdjęcia",
-            required: false,
-            list: true,
           },
           {
             type: "rich-text",

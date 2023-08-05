@@ -26,27 +26,23 @@ layout: default
   </h1>
   <ul>
     <li>Typ: {{ page.type }}</li>
-    <li>Metraż: {{ page.square_meters }} ㎡</li>
-    <li>Pow. działki: {{ page.plot_square_meters }} ㎡</li>
-    <li>Cena: {{ page.price }} zł</li>
-    <li>Cena / ㎡: {{ page.price | divided_by: page.plot_square_meters }} zł / ㎡</li>
+    <li>Metraż: {{ page.square_meters }}m<sup>2</sup></li>
+    <li>Pow. działki: {{ page.plot_square_meters }}m<sup>2</sup></li>
+    <li>Cena: {{ page.price | money }}</li>
+    <li>Cena / m<sup>2</sup>: {{ page.price | divided_by: page.plot_square_meters | money }}/m<sup>2</sup></li>
   </ul>
 
   <div>
     <h2>Karta mieszkania</h2>
-    <p>
-      <img src="{{ site.baseurl }}{{ page.main_image }}" alt="Karta mieszkania" style="max-height: 800px; width: auto;">
-    </p>
+    <div class="image-gallery">
+      <a href="{{ site.baseurl }}{{ page.main_image }}" data-lightbox="mygallery">
+        <img src="{{ site.baseurl }}{{ page.main_image }}" alt="Karta mieszkania">
+      </a>
+    </div>
   </div>
 
-  <h2>Galeria inwestycji</h2>
-  <div class="image-gallery">
-    {% for image in page.images %}
-    <div class="image-container">
-      <img src="{{ site.baseurl }}{{ image }}" alt="Image of {{ page.title }}">
-    </div>
-    {% endfor %}
-  </div>
+  <h2>Galeria nieruchomości</h2>
+  {% include gallery.html %}
 
 
   <div class="post-content">

@@ -32,6 +32,13 @@ theme: minima
 plugins:
   - jekyll-feed
 
+header_pages:
+ - _investments/investment1.md
+ - _investments/investment2.md
+ - about.md
+ - news.md
+ - contact.md
+
 collections:
  investments:
   output: true
@@ -39,6 +46,9 @@ collections:
   output: true
  news:
   output: true
+
+include:
+ - _investments
 
 exclude:
  - .sass-cache/

@@ -47,8 +47,13 @@
     fill:#5c5c5c;fill-opacity:0;stroke-width:0.264999;
 }
 
+span.menu-icon > svg > path {
+    fill: #424242;
+    stroke: none;
+}
+
 path {
-    fill: #1da1f2;
+    fill: green;
     fill-opacity:0;stroke-width:1.002
 }
 path:hover {

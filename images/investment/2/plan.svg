@@ -1,0 +1,9 @@
+<svg version="1.1" viewBox="0 0 432 616" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <image width="432" height="616" preserveAspectRatio="none" xlink:href="../../../Downloads/plan.png"/>
+ <g fill-opacity="0">
+  <path d="m64.403 38.642 134.11 0.75769 0.75768 113.65-134.11 0.75769z"/>
+  <path d="m266.71 37.127 0.75768 114.41 131.84 0.75768 0.75769-114.41z"/>
+  <path d="m76.526 254.58-0.75769 124.26h125.02l1.5154-124.26z"/>
+  <path d="m74.253 461.43-0.75769 134.87 119.71 1.5154-2.2731-137.9z"/>
+ </g>
+</svg>

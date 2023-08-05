@@ -1,30 +1,32 @@
+<svg viewBox="0 0 432 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image width="432" height="396" preserveAspectRatio="none" xlink:href="{{ site.baseurl }}{{ page.plan_image }}"/>
 
-<svg viewBox="0 0 1920 350" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <image width="1920" height="350" preserveAspectRatio="none" xlink:href="{{ site.baseurl }}{{ page.plan_image }}"/>
-
-{% for property in site.properties %}
-{% if property.investment_number == page.investment_number %}
+    {% for property in site.properties %}
+    {% if property.investment_number == page.number %}
     {% if property.availability == false %}
-        {% assign propertyClass = "sold" %}
-        {% assign propertyStatus = "Sprzedane" %}
+    {% assign propertyClass = "sold" %}
+    {% assign propertyStatus = "Sprzedane" %}
     {% elsif property.reservation == true %}
-        {% assign propertyClass = "reserved" %}
-        {% assign propertyStatus = "Zarezerwowane" %}
+    {% assign propertyClass = "reserved" %}
+    {% assign propertyStatus = "Zarezerwowane" %}
     {% else %}
-        {% assign propertyClass = "" %}
-        {% assign propertyStatus = property.title %}
+    {% assign propertyClass = "" %}
+    {% assign propertyStatus = property.title %}
     {% endif %}
 
-    {% if property.property_number == 1 %}
+    {% if property.number == 1 %}
     <a xlink:title="{{ propertyStatus }}" xlink:href="{{ site.baseurl }}{{ property.url }}">
-        <path class="{{ propertyClass }}" d="m49.84 18-0.9677 283 115.2 0.4838 1.935-118.1 79.83-1.935v-164z" />
+        <path class="{{ propertyClass }}" d="m64.403 38.642 134.11 0.75769 0.75768 113.65-134.11 0.75769z" />
     </a>
-    {% elsif property.property_number == 2 %}
+    {% elsif property.number == 2 %}
     <a xlink:title="{{ propertyStatus }}" xlink:href="{{ site.baseurl }}{{ property.url }}">
-        <path class="{{ propertyClass }}" d="m247.2 18 203.7-0.4838 1.935 195.5-123.9 1.452-2.903-32.9-79.83-0.4838z"/>
+        <path class="{{ propertyClass }}" d="m266.71 37.127 0.75768 114.41 131.84 0.75768 0.75769-114.41z"/>
+    </a>
+    {% elsif property.number == 3 %}
+    <a xlink:title="{{ propertyStatus }}" xlink:href="{{ site.baseurl }}{{ property.url }}">
+        <path class="{{ propertyClass }}" d="m76.526 254.58-0.75769 124.26h125.02l1.5154-124.26z"/>
     </a>
     {% endif %}
-{% endif %}
-{% endfor %}
-
+    {% endif %}
+    {% endfor %}
 </svg>

@@ -1,0 +1,18 @@
+{% capture image_folder %}/images/{{ page.layout }}/{{ page.number }}/{% endcapture %}
+
+<div class="image-gallery">
+    {% for file in site.static_files %}
+    {% unless file.path contains ".svg" %}
+    {% unless file.path contains "/plan." %}
+    {% if file.path contains image_folder %}
+    {% assign image_path = file.path | relative_url %}
+    <div class="gallery-item">
+        <a href="{{ image_path }}" data-lightbox="mygallery">
+            <img src="{{ image_path }}" alt="Investment image" class="property-image">
+        </a>
+    </div>
+    {% endif %}
+    {% endunless %}
+    {% endunless %}
+    {% endfor %}
+</div>
